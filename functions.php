@@ -488,7 +488,7 @@ function mrcs_submit_question_feedback_callback() {
     $lines[] = $feedback;
 
     $subject = 'Quiz feedback - Question #' . $q_id;
-    $to = get_option('admin_email');
+    $to = 'admin@cuttingedge.education';
     $headers = array('Content-Type: text/plain; charset=UTF-8');
     if ($email !== '') { $headers[] = 'Reply-To: ' . $email; }
 
