@@ -434,6 +434,71 @@ function mrcs_get_question_stats_callback() {
 add_action( 'wp_ajax_mrcs_get_question_stats', 'mrcs_get_question_stats_callback' );
 add_action( 'wp_ajax_nopriv_mrcs_get_question_stats', 'mrcs_get_question_stats_callback' );
 
+function mrcs_submit_question_feedback_callback() {
+    $q_id = isset($_POST['question_id']) ? intval($_POST['question_id']) : 0;
+    if ($q_id === 0) { wp_send_json_error('Invalid question'); }
+
+    $feedback = isset($_POST['feedback']) ? sanitize_textarea_field($_POST['feedback']) : '';
+    if ($feedback === '') { wp_send_json_error('Feedback required'); }
+
+    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $user_answer = isset($_POST['user_answer']) ? sanitize_text_field($_POST['user_answer']) : '';
+
+    $user_id = get_current_user_id();
+    $user_name = 'Guest';
+    if ($user_id > 0) {
+        $user = get_userdata($user_id);
+        if ($user) {
+            $user_name = $user->display_name ?: $user_name;
+            if ($email === '' && !empty($user->user_email)) { $email = $user->user_email; }
+        }
+    }
+
+    $question_text = wp_strip_all_tags(get_field('question_text', $q_id));
+    $explanation = wp_strip_all_tags(get_field('explanation', $q_id));
+    $answers = array(
+        'a' => get_field('option_a', $q_id),
+        'b' => get_field('option_b', $q_id),
+        'c' => get_field('option_c', $q_id),
+        'd' => get_field('option_d', $q_id),
+        'e' => get_field('option_e', $q_id)
+    );
+
+    $lines = array();
+    $lines[] = 'New quiz feedback received.';
+    $lines[] = 'User: ' . $user_name . ($user_id > 0 ? ' (ID ' . $user_id . ')' : '');
+    $lines[] = 'Email: ' . ($email !== '' ? $email : 'Not provided');
+    $lines[] = 'Question ID: ' . $q_id;
+    $lines[] = 'Question URL: ' . get_permalink($q_id);
+    $lines[] = '';
+    $lines[] = 'Question:';
+    $lines[] = $question_text !== '' ? $question_text : '[No question text found]';
+    $lines[] = '';
+    $lines[] = 'Answers:';
+    foreach ($answers as $key => $value) {
+        if ($value === '' || $value === null) { continue; }
+        $lines[] = strtoupper($key) . ': ' . wp_strip_all_tags($value);
+    }
+    if ($user_answer !== '') { $lines[] = ''; $lines[] = 'User Answer: ' . strtoupper($user_answer); }
+    $lines[] = '';
+    $lines[] = 'Explanation:';
+    $lines[] = $explanation !== '' ? $explanation : '[No explanation found]';
+    $lines[] = '';
+    $lines[] = 'Feedback:';
+    $lines[] = $feedback;
+
+    $subject = 'Quiz feedback - Question #' . $q_id;
+    $to = get_option('admin_email');
+    $headers = array('Content-Type: text/plain; charset=UTF-8');
+    if ($email !== '') { $headers[] = 'Reply-To: ' . $email; }
+
+    $sent = wp_mail($to, $subject, implode("\n", $lines), $headers);
+    if (!$sent) { wp_send_json_error('Email failed'); }
+    wp_send_json_success('Sent');
+}
+add_action( 'wp_ajax_mrcs_submit_question_feedback', 'mrcs_submit_question_feedback_callback' );
+add_action( 'wp_ajax_nopriv_mrcs_submit_question_feedback', 'mrcs_submit_question_feedback_callback' );
+
 add_action('after_setup_theme', 'remove_admin_bar_for_students');
 function remove_admin_bar_for_students() { if(!current_user_can('manage_options')) show_admin_bar(false); }
 
