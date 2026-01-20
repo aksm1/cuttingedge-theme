@@ -752,6 +752,5 @@ add_action('init', function () {
 });
 
 
-/* DEPLOY eee */
 
 ?>
