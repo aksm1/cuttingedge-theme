@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# If you use Node build tooling
+node_modules/
+dist/
+.cache/
+
+# If you use Composer
+vendor/
+
+.env
