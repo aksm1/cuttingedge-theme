@@ -1,4 +1,4 @@
-name: Deploy theme to Hostinger (SFTP)
+name: Deploy theme to Hostinger (SCP)
 
 on:
   push:
@@ -7,18 +7,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Upload theme via SFTP (SCP)
+      - name: Upload theme
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOSTINGER_HOST }}
           username: ${{ secrets.HOSTINGER_USER }}
           password: ${{ secrets.HOSTINGER_PASS }}
-          port: ${{ secrets.HOSTINGER_PORT }}
+          port: 65002
           source: "./"
           target: ${{ secrets.HOSTINGER_PATH }}
-          strip_components: 0
