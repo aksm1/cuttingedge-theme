@@ -687,6 +687,6 @@ add_action('init', function () {
 });
 
 
-/* DEPLOY TESTewewwewewew */
+/* DEPLOY eee */
 
 ?>
