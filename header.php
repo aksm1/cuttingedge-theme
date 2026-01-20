@@ -138,4 +138,7 @@
         </div>
 
     </div>
+
+ <!-- DEPLOY TEST FROM GITHUB -->
+
 <?php endif; ?>

@@ -1773,6 +1773,86 @@ p {
 .question-feedback-box.incorrect h4 { color: #cf1322; }
 .question-feedback-box.incorrect h4::before { content: '✕'; margin-right: 10px; font-weight: bold; }
 
+.question-feedback-toggle {
+    margin-top: 18px;
+}
+
+.feedback-toggle-btn {
+    background: #f7f8fb;
+    border: 1px dashed #bfc7d1;
+    color: #2c3e50;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.feedback-toggle-btn:hover {
+    background: #eef2f7;
+}
+
+.feedback-form {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #f9fbff;
+    border: 1px solid #e1e7f0;
+}
+
+.feedback-form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.feedback-form textarea,
+.feedback-form input[type="email"] {
+    width: 100%;
+    border: 1px solid #cfd8e3;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.feedback-form textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.feedback-submit-btn {
+    margin-top: 12px;
+    background: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.feedback-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.feedback-status {
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+.feedback-status.is-error {
+    color: #c0392b;
+}
+
+.feedback-status.is-success {
+    color: #2e7d32;
+}
+
 .toggle-explanation {
     background: none;
     border: none;
