@@ -1,0 +1,113 @@
+<!-- wp:html -->
+<header id="homepage-hero">
+  <div class="container">
+    <h1>Master Surgical Knowledge</h1>
+    <p>Your definitive, high-yield resource for surgical education. Explore topics by specialty and sharpen your knowledge and skills.</p>
+    
+    <div class="button-group">
+      <a href="#surgical-topics" class="cta-button">Explore All Topics</a>
+      <a href="/mrcs-question-bank" class="cta-button">MRCS Question Bank</a>
+    </div>
+
+  </div>
+</header>
+<main>
+  <section id="surgical-topics">
+    <div class="container">
+      <div class="section-header">
+<div class="section-header">
+  <h2>Start Exploring the topics below</h2>
+</div>      </div>
+
+      <div class="topic-grid-container">
+        
+        <div class="topic-category-card">
+          <img src="https://images.squarespace-cdn.com/content/669519c2211c380d6b3ae69a/add33223-6258-4dd7-b73e-39989af47351/Subject.png?content-type=image%2Fpng" 
+               alt="Anatomical illustration of the upper gastrointestinal tract" 
+               class="card-image-icon">
+          <h3>Upper GI</h3>
+          <div class="topic-buttons">
+            <a href="http://localhost:8888/cuttingedge/stomach" class="topic-button">Stomach</a>
+            <a href="http://localhost:8888/cuttingedge/duodenum" class="topic-button">Duodenum</a>
+            <a href="http://localhost:8888/cuttingedge/oesophagus" class="topic-button">Oesophagus</a>
+          </div>
+        </div>
+
+        <div class="topic-category-card">
+          <img src="https://images.squarespace-cdn.com/content/669519c2211c380d6b3ae69a/06231cdd-cdf2-4e5b-ad62-974f52ce239f/lower+GI.png?content-type=image%2Fpng" 
+               alt="Anatomical illustration of the lower gastrointestinal tract" 
+               class="card-image-icon">
+          <h3>Lower GI</h3>
+          <div class="topic-buttons">
+            <a href="http://localhost:8888/cuttingedge/appendix" class="topic-button">Appendix</a>
+            <a href="http://localhost:8888/cuttingedge/Colon" class="topic-button">Colon</a>
+            <a href="http://localhost:8888/cuttingedge/Rectum" class="topic-button">Rectum</a>
+            <a href="http://localhost:8888/cuttingedge/anus" class="topic-button">Anus</a>
+          </div>
+        </div>
+
+        <div class="topic-category-card">
+          <img src="https://images.squarespace-cdn.com/content/669519c2211c380d6b3ae69a/ee800e55-dfb8-41e0-a94a-bf045d8e1401/hpb+updated.png?content-type=image%2Fpng" 
+               alt="Anatomical illustration of the liver, pancreas, and gallbladder" 
+               class="card-image-icon">
+          <h3>Hepatobiliary</h3>
+          <div class="topic-buttons">
+            <a href="http://localhost:8888/cuttingedge/gallbladder" class="topic-button">Gallbladder</a>
+            <a href="http://localhost:8888/cuttingedge/pancreas" class="topic-button">Pancreas</a>
+            <a href="http://localhost:8888/cuttingedge/liver" class="topic-button">Liver</a>
+          </div>
+        </div>
+
+        <div class="topic-category-card">
+          <img src="https://images.squarespace-cdn.com/content/669519c2211c380d6b3ae69a/9474fa4b-29e2-4ef9-beae-c0ac50f0aa8d/emergency+general+surgery.png?content-type=image%2Fpng" 
+               alt="Scalpel representing general surgery" 
+               class="card-image-icon">
+          <h3>General & Other</h3>
+          <div class="topic-buttons">
+            <a href="http://localhost:8888/cuttingedge/spleen" class="topic-button">Spleen</a>
+            <a href="http://localhost:8888/cuttingedge/smallbowel" class="topic-button">Small Bowel</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="gi-qbank-trial">
+    <div class="container">
+      <div class="section-header">
+        <h2>Trial Mode: Gastrointestinal Surgery</h2>
+        <p>Try the full MRCS quiz experience with GI-only questions.</p>
+      </div>
+      <div id="mrcs_qbank_trial" class="mrcs-qbank-app" data-topic-filter="Gastrointestinal Surgery" data-use-server-session="false" data-qbank-key="gi-trial">
+        <div id="quizTypeSelection" style="display:none;"></div>
+        <div class="quiz-content-wrapper">
+          <div id="mainQuizContainer" style="display:none;">
+            <div class="quiz-header-nav"><h2>Knowledge Quiz</h2></div>
+            <div id="immediateFeedbackArea"></div>
+            <div id="quiz"></div>
+            <div class="quiz-controls">
+              <button id="prev" style="display:none;">Back</button>
+              <button id="next">Next Question</button>
+              <button id="submit" style="display:none;">Finish Session</button>
+            </div>
+          </div>
+          <div id="progressBox" style="display:none;">
+            <h3>Progress</h3>
+            <div class="progress-stats">
+              <div class="stat-item"><span id="currentQ">1</span> / <span id="totalQ">10</span></div>
+              <div class="stat-item">Acc: <span id="accuracyDisplay">0%</span></div>
+            </div>
+            <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+            <div id="visualProgressGrid"></div>
+          </div>
+        </div>
+        <div id="results" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- /wp:html -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->

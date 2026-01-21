@@ -394,7 +394,7 @@ p {
 }
 
 .clinical-relevance h3::before {
-    content: "ℹ️";
+    content: "â„¹ï¸";
     font-size: 1.5rem;
 }
 
@@ -1767,11 +1767,18 @@ p {
     align-items: center;
 }
 
-.question-feedback-box.correct h4 { color: #389e0d; }
-.question-feedback-box.correct h4::before { content: '✓'; margin-right: 10px; font-weight: bold; }
+/* FIXED (SAFE) */
+.question-feedback-box.correct h4::before { 
+    content: "\2713"; /* Unicode for Checkmark */
+    margin-right: 10px; 
+    font-weight: bold; 
+}
 
-.question-feedback-box.incorrect h4 { color: #cf1322; }
-.question-feedback-box.incorrect h4::before { content: '✕'; margin-right: 10px; font-weight: bold; }
+.question-feedback-box.incorrect h4::before { 
+    content: "\2715"; /* Unicode for X Cross */
+    margin-right: 10px; 
+    font-weight: bold; 
+}
 
 .question-feedback-toggle {
     margin-top: 18px;
