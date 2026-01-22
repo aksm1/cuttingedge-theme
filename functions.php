@@ -163,10 +163,69 @@ function mrcs_inject_strict_styles() {
         .stat-value-text { font-size: 0.85rem; font-weight: 700; color: #555; margin-top: 4px; }
         .stat-group-circle { display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .topic-actions { flex: 1; display: flex; flex-direction: column; align-items: stretch; border-left: 1px solid #f0f0f0; }
-        .btn-topic-start { flex: 1; background: #fff; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 700; color: var(--primary-blue); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 15px; transition: background 0.2s; }
-        .btn-topic-start:hover { background: #f0f7ff; }
-        .btn-topic-subs { padding: 10px; text-align: center; font-size: 0.75rem; color: #888; background: #fafafa; border-top: 1px solid #f0f0f0; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        .btn-topic-subs:hover { color: #555; background: #eee; }
+        .btn-topic-start { flex: 1; background: var(--primary-blue) !important; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 700; color: white !important; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 15px; transition: background 0.2s; }
+        .btn-topic-start:hover { background: var(--primary-blue-dark) !important; }
+        .btn-topic-subs { padding: 10px; text-align: center; font-size: 0.75rem; color: var(--primary-blue) !important; background: transparent !important; border-top: 1px solid #eee !important; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .btn-topic-subs:hover { background: var(--light-blue-bg) !important; color: var(--primary-blue-dark) !important; }
+
+        /* Smart Stats Cards - Static by default, interactive only if clickable */
+        .smart-stats-row { display: flex; gap: 15px; margin-bottom: 30px; }
+        .smart-card { flex: 1; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; border: 1px solid #eee; }
+        .smart-card:not(.clickable) { cursor: default !important; transform: none !important; transition: none !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; }
+        .smart-card:not(.clickable):hover { transform: none !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; }
+        .smart-card.clickable { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .smart-card.clickable:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .smart-icon { font-size: 1.5rem; margin-right: 15px; }
+        .smart-content { display: flex; flex-direction: column; }
+        .smart-label { font-size: 0.75rem; text-transform: uppercase; color: #999; font-weight: 700; letter-spacing: 0.5px; }
+        .smart-value { font-size: 1.1rem; font-weight: 800; color: #2c3e50; }
+
+        /* 1. Primary Action Buttons (Smart Quiz, Resume) - Solid Blue / Gradient */
+        #btnSmartQuiz, #btnResumedNav {
+            background: linear-gradient(to bottom, #0088f0, #0078D7) !important; color: white !important; 
+            border: 2px solid #005090 !important; border-radius: 12px;
+            cursor: pointer; box-shadow: 0 5px 15px rgba(0, 120, 215, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); box-sizing: border-box;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+        #btnSmartQuiz:hover, #btnResumedNav:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 120, 215, 0.4), inset 0 1px 0 rgba(255,255,255,0.2); background: linear-gradient(to bottom, #0090ff, #0078D7) !important; }
+        #btnSmartQuiz:active, #btnResumedNav:active { transform: translateY(1px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
+        /* 2. Secondary Mode Buttons (Mock, Random, Between Cases) - White Cards */
+        #btnMock, #btnRandom, #btnBetweenCases {
+            background: #ffffff !important; color: var(--dark-text) !important; 
+            border: 1px solid #e0e0e0 !important; border-radius: 12px;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); box-sizing: border-box;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        #btnMock:hover, #btnRandom:hover, #btnBetweenCases:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-color: var(--primary-blue) !important; }
+        #btnMock:active, #btnRandom:active, #btnBetweenCases:active { transform: translateY(1px); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+        /* Text Colors */
+        #btnSmartQuiz h3, #btnSmartQuiz p, #btnSmartQuiz span,
+        #btnResumedNav .smart-label, #btnResumedNav .smart-value, #btnResumedNav .smart-sub { color: white !important; }
+
+        #btnMock h3, #btnRandom h3, #btnBetweenCases h3 { color: var(--dark-text) !important; }
+        #btnMock p, #btnRandom p, #btnBetweenCases p { color: #888 !important; }
+        #btnMock span, #btnRandom span, #btnBetweenCases span { color: var(--primary-blue) !important; } /* Icons */
+
+        /* Smart Quiz Specifics */
+        #btnSmartQuiz { width: 60%; display: flex; align-items: center; justify-content: center; padding: 20px; margin: 0 auto 15px auto; gap: 20px; animation: pulse-glow 3s infinite; }
+        #btnSmartQuiz span { font-size: 2.5rem; }
+
+        /* Resume Button Specifics */
+        #btnResumedNav { display: flex; align-items: center; padding: 15px; }
+        #btnResumedNav .smart-icon { background: rgba(255,255,255,0.2) !important; color: white !important; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 1.2rem; }
+
+        /* Other Modes Grid Layout */
+        .secondary-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        #btnMock, #btnRandom, #btnBetweenCases { display: flex; align-items: center; padding: 15px; gap: 15px; text-align: left; }
+        #btnMock > span, #btnRandom > span, #btnBetweenCases > span { font-size: 2rem; }
+        #btnMock h3, #btnRandom h3, #btnBetweenCases h3 { margin: 0; font-size: 1.1rem; }
+        #btnMock p, #btnRandom p, #btnBetweenCases p { margin: 2px 0 0; font-size: 0.85rem; opacity: 0.9; }
+
+        #btnSmartQuiz h3 { color: white !important; margin: 0; font-size: 1.4rem; }
+        #btnSmartQuiz p { color: rgba(255,255,255,0.9) !important; margin: 5px 0 0; }
+        #btnSmartQuiz span { font-size: 2.5rem; }
 
         @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(0, 120, 215, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(0, 120, 215, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 120, 215, 0); } }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -498,6 +557,114 @@ function mrcs_submit_question_feedback_callback() {
 }
 add_action( 'wp_ajax_mrcs_submit_question_feedback', 'mrcs_submit_question_feedback_callback' );
 add_action( 'wp_ajax_nopriv_mrcs_submit_question_feedback', 'mrcs_submit_question_feedback_callback' );
+
+function mrcs_generate_smart_quiz_callback() {
+    if ( ! is_user_logged_in() ) { wp_send_json_error('Please log in.'); }
+    $user_id = get_current_user_id();
+    global $wpdb;
+
+    // 1. Get all published Question IDs
+    $all_q_ids = get_posts(array(
+        'post_type' => 'question',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'fields' => 'ids'
+    ));
+
+    if (empty($all_q_ids)) { wp_send_json_error('No questions available.'); }
+
+    // 2. Get User Progress
+    $progress_table = $wpdb->prefix . 'mrcs_user_progress';
+    $attempts = $wpdb->get_results($wpdb->prepare("SELECT question_id, is_correct FROM $progress_table WHERE user_id = %d", $user_id));
+
+    $q_stats = []; 
+    $seen_ids = [];
+    
+    foreach ($attempts as $row) {
+        $qid = $row->question_id;
+        $seen_ids[$qid] = true;
+        if (!isset($q_stats[$qid])) $q_stats[$qid] = ['attempts' => 0, 'correct' => 0];
+        $q_stats[$qid]['attempts']++;
+        if ($row->is_correct) $q_stats[$qid]['correct']++;
+    }
+
+    // 3. Map Questions to Topics & Build Topic Stats
+    $q_topics = []; 
+    $topic_stats = []; 
+
+    // Get all topic TT_IDs
+    $topic_terms = get_terms(['taxonomy' => 'topic', 'hide_empty' => false, 'fields' => 'tt_ids']);
+    if (empty($topic_terms)) $topic_terms = [];
+    
+    $sql_chunk = implode(',', array_map('intval', $all_q_ids));
+    $relationships = $wpdb->get_results("SELECT object_id, term_taxonomy_id FROM {$wpdb->term_relationships} WHERE object_id IN ($sql_chunk)");
+
+    foreach ($relationships as $rel) {
+        if (in_array($rel->term_taxonomy_id, $topic_terms)) {
+            $qid = $rel->object_id;
+            $tid = $rel->term_taxonomy_id;
+            
+            if (!isset($q_topics[$qid])) $q_topics[$qid] = [];
+            $q_topics[$qid][] = $tid;
+
+            if (!isset($topic_stats[$tid])) $topic_stats[$tid] = ['total_qs' => 0, 'seen_qs' => 0, 'total_attempts' => 0, 'total_correct' => 0];
+            $topic_stats[$tid]['total_qs']++;
+            
+            if (isset($seen_ids[$qid])) {
+                $topic_stats[$tid]['seen_qs']++;
+                $topic_stats[$tid]['total_attempts'] += $q_stats[$qid]['attempts'];
+                $topic_stats[$tid]['total_correct'] += $q_stats[$qid]['correct'];
+            }
+        }
+    }
+
+    // 4. Calculate Topic Weights
+    $topic_weights = [];
+    foreach ($topic_stats as $tid => $stat) {
+        $completion_rate = ($stat['total_qs'] > 0) ? ($stat['seen_qs'] / $stat['total_qs']) : 0;
+        $accuracy_rate = ($stat['total_attempts'] > 0) ? ($stat['total_correct'] / $stat['total_attempts']) : 1.0;
+
+        $weight = 0;
+        // Priority 1: Unattempted / Low Completion
+        if ($completion_rate == 0) { $weight += 100; } 
+        elseif ($completion_rate < 0.25) { $weight += 50; } 
+        elseif ($completion_rate < 0.5) { $weight += 20; }
+
+        // Priority 2: Low Accuracy
+        if ($stat['total_attempts'] > 0) {
+            if ($accuracy_rate < 0.4) { $weight += 60; } 
+            elseif ($accuracy_rate < 0.6) { $weight += 30; }
+        }
+        // Priority 3: Time (Requires 'duration' column in DB - skipped for now)
+        $topic_weights[$tid] = $weight;
+    }
+
+    // 5. Score Questions
+    $scored_questions = [];
+    foreach ($all_q_ids as $qid) {
+        $score = 0;
+        $is_seen = isset($seen_ids[$qid]);
+        if (!$is_seen) { $score += 40; } // Prefer unseen
+        else {
+            $q_acc = ($q_stats[$qid]['attempts'] > 0) ? ($q_stats[$qid]['correct'] / $q_stats[$qid]['attempts']) : 1;
+            if ($q_acc < 1) { $score += 20 * (1 - $q_acc); } // Add points for wrong answers
+        }
+        $max_t_weight = 0;
+        if (isset($q_topics[$qid])) { foreach ($q_topics[$qid] as $tid) { if (isset($topic_weights[$tid])) { $max_t_weight = max($max_t_weight, $topic_weights[$tid]); } } }
+        $score += $max_t_weight;
+        $score += rand(0, 15); // Random Jitter for variety
+        $scored_questions[] = ['id' => $qid, 'score' => $score];
+    }
+
+    // 6. Sort, Slice & Shuffle
+    usort($scored_questions, function($a, $b) { return $b['score'] <=> $a['score']; });
+    $top_100 = array_slice($scored_questions, 0, 100);
+    $result_ids = array_column($top_100, 'id');
+    shuffle($result_ids); 
+
+    wp_send_json_success($result_ids);
+}
+add_action( 'wp_ajax_mrcs_generate_smart_quiz', 'mrcs_generate_smart_quiz_callback' );
 
 add_action('after_setup_theme', 'remove_admin_bar_for_students');
 function remove_admin_bar_for_students() { if(!current_user_can('manage_options')) show_admin_bar(false); }
