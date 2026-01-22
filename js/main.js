@@ -123,7 +123,7 @@ function fixMobileXpBubble() {
             menuHistory = []; 
             const totalQs = allQuizQuestions.length; 
             const attempted = seenIDs.length; 
-            const wrong = wrongIDs.length; 
+            let wrong = wrongIDs.length; 
             const correct = attempted - wrong; 
             const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0; 
             const unseenCount = totalQs - attempted; 
@@ -329,7 +329,29 @@ stepperHtml += `
         if(nextButton) nextButton.addEventListener('click', handleNextOrCheck); if(topNext) topNext.addEventListener('click', handleNextOrCheck); if(prevButton) prevButton.addEventListener('click', handlePrev); if(topPrev) topPrev.addEventListener('click', handlePrev); if (backToMenuBtn) { backToMenuBtn.addEventListener('click', function() { if (confirm("Exit quiz? Your progress is saved to resume later.")) { saveQuizState(); toggleUI('menu'); renderMainMenu(); } }); } 
         
         // --- 4. START DASHBOARD ---
-        renderMainMenu(); 
+        const autoStartTopic = appRoot.dataset.autoStartTopic;
+        if (autoStartTopic) {
+            const findNodeByName = (list, name) => {
+                for (let t of list) {
+                    if (t.name.trim().toLowerCase() === name.trim().toLowerCase()) return t;
+                    if (t.children) {
+                        const f = findNodeByName(t.children, name);
+                        if (f) return f;
+                    }
+                }
+                return null;
+            };
+            const node = findNodeByName(topicTree, autoStartTopic);
+            if (node) {
+                startTopicQuiz(node);
+                if (backToMenuBtn) backToMenuBtn.style.display = 'none';
+            } else {
+                console.error("Auto-start topic not found:", autoStartTopic);
+                renderMainMenu();
+            }
+        } else {
+            renderMainMenu();
+        }
         
         // --- 5. TRIGGER INITIAL ANIMATION ---
         animateDonuts(); 

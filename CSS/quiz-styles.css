@@ -208,6 +208,7 @@ ul.flyout-menu li a:hover {
     .navbar { padding: 0 20px; }
 }
 
+
 /* =========================================
    5. QUIZ LAYOUT & ANIMATIONS (Original)
    ========================================= */
@@ -300,7 +301,8 @@ ul.flyout-menu li a:hover {
 
 #mainQuizContainer {
     flex: 1;
-    max-width: 650px;
+    width: 90%;
+    max-width: none;
     display: none;
 }
 
@@ -419,6 +421,7 @@ ul.flyout-menu li a:hover {
     width: 0%;
     transition: width 0.3s;
 }
+
 
 @media (max-width: 850px) {
     #quizWrapper.quiz-is-active {
